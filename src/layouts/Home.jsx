@@ -1,13 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import Header from '../components/Header';
-import '../App.css'
+import LatestNews from '../components/LatestNews';
 
 const Home = () => {
     return (
         <div className='poppins-font'>
             <header>
                 <Header></Header>
+
+                <section className='w-11/12 mx-auto my-3'>
+                    <LatestNews></LatestNews>
+                </section>
             </header>
 
             <main>
