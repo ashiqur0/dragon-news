@@ -21,7 +21,7 @@ const Home = () => {
                 </nav>
             </header>
 
-            <main className='w-11/12 mx-auto grid grid-cols-12 gap-5 mt-10'>
+            <main className='w-11/12 mx-auto grid grid-cols-12 gap-5 mt-15'>
                 <aside className='col-span-3'>
                     <LeftAside></LeftAside>
                 </aside>
