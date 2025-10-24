@@ -8,7 +8,7 @@ import RightAside from '../components/HomeLayout/RightAside';
 
 const Home = () => {
     return (
-        <div className='poppins-font mt-8'>
+        <div>
             <header>
                 <Header></Header>
                 <LatestNews></LatestNews>                

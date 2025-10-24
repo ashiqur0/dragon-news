@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 
 const Header = () => {
     return (
-        <div className='flex flex-col justify-center items-center gap-3'>
+        <div className='flex flex-col justify-center items-center gap-3 mt-8'>
             {/* Logo */}
             <img src={logo} alt="" />
 

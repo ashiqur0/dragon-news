@@ -1,5 +1,5 @@
 // NewsCard.jsx
-import React, { useState } from "react";
+import React from "react";
 import { CiBookmark } from "react-icons/ci";
 import {
   FaStar,
@@ -8,6 +8,7 @@ import {
   FaEye,
 } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
 const DEFAULT_TRUNCATE = 180;
 
@@ -20,13 +21,12 @@ const NewsCard = ({ news }) => {
     author = { name: "Unknown", published_date: null, img: "" },
     thumbnail_url = "",
     details = "",
-    tags = [],
+    id
   } = news || {};
 
   // allow float rating (e.g. 4.3)
   const ratingNumber = typeof rating.number === "number" ? rating.number : 0;
 
-  const [expanded, setExpanded] = useState(false);
 
   const formattedDate = author.published_date
     ? new Date(author.published_date).toLocaleDateString("en-US", {
@@ -36,7 +36,6 @@ const NewsCard = ({ news }) => {
       })
     : "";
 
-  const toggleExpanded = () => setExpanded((s) => !s);
 
   // Build star icons (max 5) supporting halves
   const renderStars = (value) => {
@@ -54,13 +53,6 @@ const NewsCard = ({ news }) => {
     }
     return stars;
   };
-
-  // truncated text logic: if shorter than limit, don't show Read More
-  const shouldTruncate = details.length > DEFAULT_TRUNCATE;
-
-  const truncatedText = shouldTruncate
-    ? details.slice(0, DEFAULT_TRUNCATE).trim()
-    : details;
 
   return (
     <article className="card bg-base-100 shadow-md border border-gray-200 rounded-xl overflow-hidden mb-6">
@@ -113,40 +105,15 @@ const NewsCard = ({ news }) => {
         </figure>
       ) : null}
 
-      {/* Details with Read More toggle */}
-      <div className="px-5 pb-5 mb-5 border-b border-base-300">
+       {/* Details */}
+      <div className="px-5 py-3 border-b border-base-300 mb-7 pb-7">
         <p className="text-sm text-gray-600">
-          {expanded ? details : `${truncatedText}${shouldTruncate ? "..." : ""}`}
+          {details.slice(0, 180)}...
+          <Link to={`/news-details/${id}`} className="font-medium cursor-pointer hover:underline ml-1 bg-linear-to-r from-[#FF8C47] to-[#F75B5F] bg-clip-text text-transparent">
+            Read More
+          </Link>
         </p>
-
-        {/* Show button only when truncation applies */}
-        {shouldTruncate && (
-          <button
-            onClick={toggleExpanded}
-            className="mt-2 text-orange-500 font-medium text-sm hover:underline focus:outline-none"
-            aria-expanded={expanded}
-            aria-controls={`news-details-${news?.id || "unknown"}`}
-          >
-            {expanded ? "Show Less" : "Read More"}
-          </button>
-        )}
       </div>
-
-      {/* Tags (optional small row) */}
-      {tags && tags.length > 0 && (
-        <div className="px-5 pb-3">
-          <div className="flex flex-wrap gap-2">
-            {tags.slice(0, 5).map((t) => (
-              <span
-                key={t}
-                className="text-xs px-2 py-1 border rounded-md text-gray-600"
-              >
-                #{t}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Footer: rating + views */}
       <footer className="flex justify-between items-center px-5 pt-2 pb-5 text-sm text-gray-600">
