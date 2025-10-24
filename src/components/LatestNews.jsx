@@ -16,16 +16,18 @@ const LatestNews = () => {
     ]
 
     return (
-        <div className='flex items-center gap-5 bg-base-200 p-3'>
-            <p className='font-medium text-base-100 bg-secondary px-3 py-2'>Latest</p>
-            <Marquee pauseOnHover={true} speed={60}>
-                {
-                    latestNews.map(news => <div key={news} className='flex font-semibold text-primary'>
-                        <p className='mx-5'>{news}</p>
-                        <p className='mx-5'>|</p>
-                    </div>)
-                }
-            </Marquee>
+        <div className='w-11/12 mx-auto my-3'>
+            <div className='flex items-center gap-5 bg-base-200 p-3'>
+                <p className='font-medium text-base-100 bg-secondary px-3 py-2'>Latest</p>
+                <Marquee pauseOnHover={true} speed={60}>
+                    {
+                        latestNews.map(news => <div key={news} className='flex font-semibold text-primary'>
+                            <p className='mx-5'>{news}</p>
+                            <p className='mx-5'>|</p>
+                        </div>)
+                    }
+                </Marquee>
+            </div>
         </div>
     );
 };

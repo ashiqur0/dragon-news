@@ -11,14 +11,8 @@ const Home = () => {
         <div className='poppins-font mt-8'>
             <header>
                 <Header></Header>
-
-                <section className='w-11/12 mx-auto my-3'>
-                    <LatestNews></LatestNews>
-                </section>
-                
-                <nav className='w-11/12 mx-auto my-3'>
-                    <Navbar></Navbar>
-                </nav>
+                <LatestNews></LatestNews>                
+                <Navbar></Navbar>
             </header>
 
             <main className='w-11/12 mx-auto grid grid-cols-12 gap-5 mt-15'>
